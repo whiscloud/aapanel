@@ -1,74 +1,109 @@
 #!/bin/bash
 
-# Function to install aaPanel
-install_aapanel() {
-    # Update system packages
-    sudo apt update && sudo apt upgrade -y
-    
-    # Install required dependencies
-    sudo apt install -y wget
-    
-    # Download aaPanel installer
-    wget -O install.sh http://www.aapanel.com/script/install-ubuntu_6.0_en.sh
-    
-    # Run installer
-    sudo bash install.sh
+# ----------------------------------
+# Colors
+# ----------------------------------
+NC='\033[0m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+RED='\033[0;31m'
 
-    # Perform initial setup, configuration, and branding (if possible)
-    # This step might involve manual configuration or modifications directly within aaPanel's settings.
-    # Unfortunately, custom branding typically requires deeper access or modifications to the source code.
-}
+sleep 1
+echo "-------------------------------------"
+echo "        Quick Malware Killer         "
+echo "Author: Webers Mitra Solution        "
+echo "Copyright: GNU General Public License"
+echo "Supported OS: Ubuntu /18/20/22       "
+echo "Version: 1.1.2.0                     "
+echo "Release Date: 4 December 2023        "
+echo "Credits: Github                      "
+echo "Website: https://webersmitra.com     "
+echo "-------------------------------------"
+sleep 1
 
-# Function for updating aaPanel
-update_aapanel() {
-    sudo apt update && sudo apt upgrade -y
-    sudo bash /www/server/panel/install/update.sh
-}
+echo ""
+if ping -q -c 1 -W 1 google.com >/dev/null; then
+echo -e "${GREEN}Internet Connection Successful...${NC}"
+else
+  echo ""
+  echo -e "${RED}Seems like Network has some problems, Trying Auto-Fix${NC}"
+  if ping -q -c 1 -W 1 8.8.8.8 >/dev/null; then
+  echo -e "${GREEN}Network is OK, DNS Got some Problems...${NC}"
+  echo "nameserver 8.8.8.8" >> /etc/resolv.conf
+  echo "nameserver 8.8.4.4" >> /etc/resolv.conf
+  echo "nameserver 1.1.1.1" >> /etc/resolv.conf
+  echo -e "${GREEN}Fixed DNS,Retrying Network Check...${NC}"
+  echo ""
+  if ping -q -c 1 -W 1 google.com >/dev/null; then
+  echo -e "${GREEN}Network Connection Successful${NC}"
+  else
+  echo -e "${RED}Network is Offline. We have tried a Fix from our side${NC}"
+  echo -e "${RED}but didn't work. Please Check the Network!${NC}"
+  exit 1
+  fi
+  else
+  echo -e "${RED}Network is Offline. Troubleshooting Network!${NC}"
+  sudo mv /etc/netplan/*.yaml  /etc/netplan/01-netcfg.yaml >/dev/null
+  echo "network:" >> /etc/netplan/01-netcfg.yaml
+  echo "  version: 2" >> /etc/netplan/01-netcfg.yaml
+  echo "  renderer: networkd" >> /etc/netplan/01-netcfg.yaml
+  echo "  ethernets:" >> /etc/netplan/01-netcfg.yaml
+  network_interface=`ls /sys/class/net | grep enp`
+  echo "    $network_interface:" >> /etc/netplan/01-netcfg.yaml
+  echo "      dhcp4: true" >> /etc/netplan/01-netcfg.yaml
+  sudo netplan generate >/dev/null
+  sudo netplan apply >/dev/null
+  sudo ifdown -a >/dev/null && sudo ifup -a >/dev/null
+  sudo dhclient -v > /dev/null
+  echo -e "${GREEN}Fixed Network, Retrying Network Check${NC}"
+  echo ""
+  if ping -q -c 1 -W 1 google.com >/dev/null; then
+  echo -e "${GREEN}Network Connection Successful${NC}"
+  else
+  echo -e "${RED}Network is Offline. We have tried a Fix from our side${NC}"
+  echo -e "${RED}but didn't work. Please Check the Network!${NC}"
+  exit 1
+  fi
+  fi
+fi
 
-# Function for debugging and fixing errors
-debug_and_fix() {
-    # Check system logs, aaPanel logs, and error logs
-    # Investigate reported issues and errors
-    # Manually fix or search online for solutions based on the encountered problems
-}
+echo ""
+echo -e "${YELLOW}Updating System${NC}"
+sudo apt -y update && sudo apt -y upgrade
 
-# Function for virus/malware cleanup
-cleanup_virus_malware() {
-    # Use antivirus tools like ClamAV or other security software to scan and remove malware
-    # Perform a system-wide scan and remove any detected threats
-}
+echo ""
+if [ $? != 0 ]; 
+then
+echo -e "${RED}Seems like APT is experiencing Error. No Worries,${NC}"
+echo -e "${RED}Trying a Fix${NC}"
+sudo rm /var/lib/apt/lists/* -vf > /dev/null 2>&1
+sudo apt-get clean > /dev/null 2>&1
+sudo apt-get -f -y install > /dev/null 2>&1
+echo ""
+echo -e "${YELLOW}Trying System Update Again${NC}"
+sudo apt -y update && sudo apt -y upgrade
+fi
 
-# Main menu
-echo "Welcome to aaPanel Management Script"
+if ! command sudo dpkg -l | grep -v "^ii"
+then
+echo ""
+echo -e "${YELLOW}Installing AAPanel By Webers Mitra${NC}"
+# Initial setup
+if [[ $EUID -ne 0 ]]; then
+    echo "This script must be run as root."
+    exit 1
+fi
 
-while true; do
-    echo "1. Install aaPanel"
-    echo "2. Update aaPanel"
-    echo "3. Debug and Fix Errors"
-    echo "4. Virus/Malware Cleanup"
-    echo "5. Exit"
+OS=$(awk -F= '/^NAME/{print $2}' /etc/os-release)
+OS_VERSION=$(awk -F= '/^VERSION_ID/{print $2}' /etc/os-release)
 
-    read -p "Choose an option: " choice
+fi
 
-    case $choice in
-        1)
-            install_aapanel
-            ;;
-        2)
-            update_aapanel
-            ;;
-        3)
-            debug_and_fix
-            ;;
-        4)
-            cleanup_virus_malware
-            ;;
-        5)
-            echo "Exiting aaPanel Management Script"
-            exit 0
-            ;;
-        *)
-            echo "Invalid option. Please choose again."
-            ;;
-    esac
-done
+echo ""
+echo -e "${YELLOW}Installing AAPAnel On This Server${NC}"
+wget -O install.sh http://www.aapanel.com/script/install-ubuntu_6.0_en.sh && sudo bash install.sh aapanel
+
+
+echo ""
+echo -e "${GREEN}All Done...Goodbye!${NC}"
+exit 1
