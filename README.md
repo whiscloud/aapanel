@@ -58,4 +58,5 @@ wget -O alma.sh https://raw.githubusercontent.com/webersmitra/aapanel/main/alma.
 [Click Here For All Management Command](https://github.com/webersmitra/aapanel/blob/main/manage.md).
 
 For Any Developement Regarding Queries Contact Us - sales@webersmitra.com
+
 Visit Our Website - https://webersmitra.com
