@@ -84,21 +84,6 @@ echo -e "${YELLOW}Trying System Update Again${NC}"
 sudo apt -y update && sudo apt -y upgrade
 fi
 
-if ! command sudo dpkg -l | grep -v "^ii"
-then
-echo ""
-echo -e "${YELLOW}Installing AAPanel By Webers Mitra${NC}"
-# Initial setup
-if [[ $EUID -ne 0 ]]; then
-    echo "This script must be run as root."
-    exit 1
-fi
-
-OS=$(awk -F= '/^NAME/{print $2}' /etc/os-release)
-OS_VERSION=$(awk -F= '/^VERSION_ID/{print $2}' /etc/os-release)
-
-fi
-
 echo ""
 echo -e "${YELLOW}Installing AAPAnel On This Server${NC}"
 wget -O install.sh http://www.aapanel.com/script/install-ubuntu_6.0_en.sh && sudo bash install.sh aapanel
