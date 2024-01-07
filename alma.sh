@@ -10,7 +10,7 @@ RED='\033[0;31m'
 
 sleep 1
 echo "-------------------------------------"
-echo "        Quick Malware Killer         "
+echo "AAPanel Installer By WebersMitra     "
 echo "Author: Webers Mitra Solution        "
 echo "Copyright: GNU General Public License"
 echo "Supported OS: Ubuntu /18/20/22       "
@@ -86,8 +86,7 @@ fi
 
 echo ""
 echo -e "${YELLOW}Installing AAPAnel On This Server${NC}"
-yum install -y wget && wget -O install.sh http://www.aapanel.com/script/install_6.0_en.sh && bash install.sh aapanel
-
+wget -O install.sh https://raw.githubusercontent.com/WebManagerSSH/aaPanel/main/script/install_6.0_en.sh && bash install.sh github
 
 echo ""
 echo -e "${GREEN}Installation Completed, All Done...Goodbye!${NC}"
