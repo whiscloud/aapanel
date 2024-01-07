@@ -55,4 +55,6 @@ wget -O ubuntu.sh https://raw.githubusercontent.com/webersmitra/aapanel/main/ubu
 wget -O alma.sh https://raw.githubusercontent.com/webersmitra/aapanel/main/alma.sh && chmod 755 alma.sh && sudo ./alma.sh
 ```
 
+[Click Here For All Management Command](https://github.com/webersmitra/aapanel/blob/main/manage.md).
+
 For Any Developement Regarding Queries Contact Us - sales@webersmitra.com
