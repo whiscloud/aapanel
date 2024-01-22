@@ -69,7 +69,7 @@ fi
 
 echo ""
 echo -e "${YELLOW}Updating System${NC}"
-sudo apt -y update && sudo apt -y upgrade
+yum update -y && yum upgrade
 
 echo ""
 if [ $? != 0 ]; 
