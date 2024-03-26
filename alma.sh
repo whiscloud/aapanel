@@ -86,7 +86,7 @@ fi
 
 echo ""
 echo -e "${YELLOW}Installing AAPAnel On This Server${NC}"
-wget -O install.sh https://raw.githubusercontent.com/WebManagerSSH/aaPanel/main/script/install_6.0_en.sh && bash install.sh github
+URL=https://www.aapanel.com/script/install_6.0_en.sh && if [ -f /usr/bin/curl ];then curl -ksSO "$URL" ;else wget --no-check-certificate -O install_6.0_en.sh "$URL";fi;bash install_6.0_en.sh aapanel
 
 echo ""
 echo -e "${GREEN}Installation Completed, All Done...Goodbye!${NC}"
