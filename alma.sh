@@ -89,5 +89,6 @@ echo -e "${YELLOW}Installing AAPAnel On This Server${NC}"
 URL=https://www.aapanel.com/script/install_6.0_en.sh && if [ -f /usr/bin/curl ];then curl -ksSO "$URL" ;else wget --no-check-certificate -O install_6.0_en.sh "$URL";fi;bash install_6.0_en.sh aapanel
 
 echo ""
-echo -e "${GREEN}Installation Completed, All Done...Goodbye!${NC}"
+echo -e "${GREEN}Installation Completed, All Done..!${NC}"
+echo -e "${GREEN}Visit Our Website WHISCLOUD.COM"
 exit 1
