@@ -86,7 +86,7 @@ fi
 
 echo ""
 echo -e "${YELLOW}Installing AAPAnel On This Server${NC}"
-URL=https://www.aapanel.com/script/install_6.0_en.sh && if [ -f /usr/bin/curl ];then curl -ksSO "$URL" ;else wget --no-check-certificate -O install_6.0_en.sh "$URL";fi;bash install_6.0_en.sh aapanel
+URL=https://www.aapanel.com/script/install_6.0_en.sh && if [ -f /usr/bin/curl ];then curl -ksSO "$URL" ;else wget --no-check-certificate -O install_6.0_en.sh "$URL";fi;bash install_6.0_en.sh aapanel -y
 
 echo ""
 echo -e "${GREEN}All Done...Goodbye!${NC}"
