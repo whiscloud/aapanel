@@ -10,14 +10,14 @@ RED='\033[0;31m'
 
 sleep 1
 echo "-------------------------------------"
-echo "AAPanel Installer By WebersMitra     "
-echo "Author: Webers Mitra Solution        "
+echo "AAPanel Installer By WHISCLOUD     "
+echo "Author: INOZIX Ltd.        "
 echo "Copyright: GNU General Public License"
 echo "Supported OS: Ubuntu /18/20/22       "
 echo "Version: 1.1.2.0                     "
 echo "Release Date: 4 December 2023        "
 echo "Credits: Github                      "
-echo "Website: https://webersmitra.com     "
+echo "Website: https://inozix.com     "
 echo "-------------------------------------"
 sleep 1
 
