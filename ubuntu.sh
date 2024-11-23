@@ -10,14 +10,14 @@ RED='\033[0;31m'
 
 sleep 1
 echo "-------------------------------------"
-echo "AAPanel Installer By WebersMitra     "
-echo "Author: Webers Mitra Solution        "
+echo "AAPanel Installer By WHISCLOUD     "
+echo "Author: INOZIX LTD.        "
 echo "Copyright: GNU General Public License"
 echo "Supported OS: Ubuntu /18/20/22       "
 echo "Version: 1.1.2.0                     "
 echo "Release Date: 4 December 2023        "
 echo "Credits: Github                      "
-echo "Website: https://webersmitra.com     "
+echo "Website: https://inozix.com     "
 echo "-------------------------------------"
 sleep 1
 
@@ -86,7 +86,7 @@ fi
 
 echo ""
 echo -e "${YELLOW}Installing AAPAnel On This Server${NC}"
-URL=https://www.aapanel.com/script/install_6.0_en.sh && if [ -f /usr/bin/curl ];then curl -ksSO "$URL" ;else wget --no-check-certificate -O install_6.0_en.sh "$URL";fi;bash install_6.0_en.sh aapanel -y
+URL=https://www.aapanel.com/script/install_7.0_en.sh && if [ -f /usr/bin/curl ];then curl -ksSO "$URL" ;else wget --no-check-certificate -O install_7.0_en.sh "$URL";fi;bash install_7.0_en.sh aapanel
 
 echo ""
 echo -e "${GREEN}All Done...Goodbye!${NC}"
