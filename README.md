@@ -52,7 +52,7 @@ wget -O ubuntu.sh https://raw.githubusercontent.com/whiscloud/aapanel/main/ubunt
 
 **For Installation in *Centos/AlmaLinux* Run**
 ```
-wget -O alma.sh https://raw.githubusercontent.com/whiscloud/aapanel/main/alma.sh && chmod 755 alma.sh && sudo ./alma.sh
+wget -O alma.sh https://raw.githubusercontent.com/whiscloud/aapanel/main/redhat.sh && chmod 755 redhat.sh && sudo ./redhat.sh
 ```
 
 [Click Here For All Management Command](https://github.com/webersmitra/aapanel/blob/main/manage.md).
