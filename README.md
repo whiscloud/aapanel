@@ -55,8 +55,8 @@ wget -O ubuntu.sh https://raw.githubusercontent.com/whiscloud/aapanel/main/ubunt
 wget -O alma.sh https://raw.githubusercontent.com/whiscloud/aapanel/main/redhat.sh && chmod 755 redhat.sh && sudo ./redhat.sh
 ```
 
-[Click Here For All Management Command](https://github.com/webersmitra/aapanel/blob/main/manage.md).
+[Click Here For All Management Command](https://github.com/whiscloud/aapanel/blob/main/manage.md).
 
-For Any Developement Regarding Queries Contact Us - sales@webersmitra.com
+For Any Developement Regarding Queries Contact Us - sales@inozix.com
 
-Visit Our Website - https://webersmitra.com
+Visit Our Website - https://inozix.com
